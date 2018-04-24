@@ -1,0 +1,36 @@
+<Plugin name="DuoPlugin" type="Authentication">
+<author>Duo Security</author>
+<email>support@duosecurity.com</email>
+<creationDate>09:32:20 2016-12-02</creationDate>
+<description>Custom Plugin for Duo Security</description>
+<configuration>
+    <AttributeValuePair>
+        <Attribute type="string" length="20">ikey</Attribute>
+        <mandatory>true</mandatory>
+        <instanceOverride>false</instanceOverride>
+        <globalUIOverride>true</globalUIOverride>
+        <value></value>
+    </AttributeValuePair>
+    <AttributeValuePair>
+        <Attribute type="string" length="40">skey</Attribute>
+        <mandatory>true</mandatory>
+        <instanceOverride>false</instanceOverride>
+        <globalUIOverride>true</globalUIOverride>
+        <value></value>
+    </AttributeValuePair>
+    <AttributeValuePair>
+        <Attribute type="string" length="40">host</Attribute>
+        <mandatory>true</mandatory>
+        <instanceOverride>false</instanceOverride>
+        <globalUIOverride>true</globalUIOverride>
+        <value></value>
+    </AttributeValuePair>
+    <AttributeValuePair>
+        <Attribute type="string" length="6">Fail mode</Attribute>
+        <mandatory>true</mandatory>
+        <instanceOverride>false</instanceOverride>
+        <globalUIOverride>true</globalUIOverride>
+        <value></value>
+    </AttributeValuePair>
+</configuration>
+</Plugin>

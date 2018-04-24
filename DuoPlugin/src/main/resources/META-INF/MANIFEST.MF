@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-Version: 10
+Bundle-Name: DuoPlugin
+Bundle-Activator: com.oracle.DuoPlugin
+Bundle-ManifestVersion: 2
+Import-Package: org.osgi.framework;version="1.3.0",oracle.security.am.plugin,oracle.security.am.plugin.authn,oracle.security.am.plugin.impl,oracle.security.am.plugin.api,oracle.security.am.common.utilities.principal,oracle.security.idm,javax.security.auth,oracle.security.am.engines.common.identity.provider,oracle.security.am.common.policy.runtime,javax.crypto,javax.crypto.spec,javax.net,javax.net.ssl
+Bundle-SymbolicName: DuoPlugin

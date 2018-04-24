@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <groupId>com.oracle.integrations</groupId>
+    <artifactId>DuoOAM</artifactId>
+    <version>1.0.2</version>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/duo-oam-assembly.xml</descriptor>
+                    </descriptors>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                    <finalName>DuoPlugin</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.duosecurity.duoweb</groupId>
+            <artifactId>DuoWeb</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/duo-oam-with-dependencies.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.duosecurity.client</groupId>
+            <artifactId>Http</artifactId>
+            <version>0.2.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/duo-oam-with-dependencies.jar</systemPath>
+        </dependency>
+
+        <!-- These dependencies are provided at runtime, however maven
+             complains it cannot find symbols for the .java file if these
+             dependencies are declared as 'provided' or 'runtime' -->
+        <dependency>
+            <groupId>oracle.security.am.plugin</groupId>
+            <artifactId>oracle</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/oam-plugin.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>oracle.security.am.engines.common.identity.provider</groupId>
+            <artifactId>oracle-engines</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/identity-provider.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>oracle.security.am.common.utilities.principal</groupId>
+            <artifactId>oracle-utils</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/utilities.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>oracle.security.am.common.policy.runtime</groupId>
+            <artifactId>oracle-runtime</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/policy.jar</systemPath>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.felix/org.apache.felix.framework -->
+        <!-- The version doesn't necessarily matter here because the files
+             don't actually get added to the resulting jar file. They are just
+             needed for mvn to not complain about dependencies at compile
+             time -->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <version>2.0.5</version>
+        </dependency>
+
+        <!-- test dependencies -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

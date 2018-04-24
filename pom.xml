@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.duosecurity</groupId>
+  <artifactId>duo-oam-all</artifactId>
+  <version>1.0.2</version>
+  <packaging>pom</packaging>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <name>Duo Security's Oracle Access Manager Plugins</name>
+  <description>Two Factor Authentication for OAM</description>
+
+  <modules>
+    <module>DuoLogin</module>
+    <module>DuoPlugin</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptor>zipit.xml</descriptor>
+          <finalName>DuoOAMPlugin-v${project.version}</finalName>
+          <appendAssemblyId>false</appendAssemblyId>
+        </configuration>
+        <executions>
+          <execution>
+            <id>zipit</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
