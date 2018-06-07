@@ -158,4 +158,14 @@ public class DuoPluginTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void testSanitizeNull() {
+        String testString = null;
+        String expectedResult = "";
+
+        String actualResult = DuoPlugin.sanitizeForLogging(testString);
+
+        assertEquals(expectedResult, actualResult);
+    }
 }

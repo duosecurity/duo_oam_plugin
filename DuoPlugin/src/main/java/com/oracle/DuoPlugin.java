@@ -436,6 +436,10 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
     }
 
     static String sanitizeForLogging(String stringToSanitize) {
+      if (stringToSanitize == null) {
+        return "";
+      }
+
       return stringToSanitize.replaceAll(SANITIZING_PATTERN, "");        
     }
 }
