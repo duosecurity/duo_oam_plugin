@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/duosecurity/duo_oam_plugin.svg?branch=master)](https://travis-ci.org/duosecurity/duo_oam_plugin)
+
 # Overview
 
 **duo_oam** - Duo two-factor authentication for Oracle Access Manager.
