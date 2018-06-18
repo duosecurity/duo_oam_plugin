@@ -9,7 +9,7 @@
 
     <groupId>com.oracle.integrations</groupId>
     <artifactId>DuoOAM</artifactId>
-    <version>1.0.2</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <build>
         <finalName>${project.artifactId}</finalName>
