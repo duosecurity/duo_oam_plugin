@@ -26,10 +26,19 @@
         final String API_KEY_VALUE = request.getParameter(
                 GenericConstants.PLUGIN_CLIENT_RESPONSE).split(",")[1];
         final String API_HOSTNAME = API_KEY_VALUE.split("=")[1];
+        final String reqToken = request.getParameter(GenericConstants.AM_REQUEST_TOKEN_IDENTIFIER);
         %>
         <h1>Duo Authentication</h1>
         <script src="<%=request.getContextPath()%>/pages/js/Duo-Web-v2.min.js" type="text/javascript"></script>
         <iframe id="duo_iframe" frameborder="0"></iframe>
+        <form id="duo_form">
+          <%
+          if(reqToken != null && reqToken.length() > 0) { %>
+          <input type="hidden" name="<%=GenericConstants.AM_REQUEST_TOKEN_IDENTIFIER%>" value="<%=reqToken%>">
+          <%
+          }
+          %>
+        </form>
         <script type="text/javascript">
             Duo.init({
                 'host':"<%=API_HOSTNAME%>",
