@@ -37,8 +37,8 @@ import com.duosecurity.client.Http;
 
 public final class DuoPlugin extends AbstractAuthenticationPlugIn {
 
-    private static final String JAR_VERSION = "1.1.0-SNAPSHOT";
-    private static final String WAR_VERSION = "1.1.0-SNAPSHOT";
+    private static final String JAR_VERSION = "1.1.0";
+    private static final String WAR_VERSION = "1.1.0";
     // This value is in snake_case because it has to match the string that Duo
     // uses when POSTing back to the URL.
     private static final String credentialName = "sig_response";
