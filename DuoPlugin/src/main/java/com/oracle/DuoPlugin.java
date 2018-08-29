@@ -37,8 +37,8 @@ import com.duosecurity.client.Http;
 
 public final class DuoPlugin extends AbstractAuthenticationPlugIn {
 
-    private static final String JAR_VERSION = "1.1.1";
-    private static final String WAR_VERSION = "1.1.1";
+    private static final String JAR_VERSION = "1.2.0";
+    private static final String WAR_VERSION = "1.2.0";
     // This value is in snake_case because it has to match the string that Duo
     // uses when POSTing back to the URL.
     private static final String credentialName = "sig_response";
@@ -46,6 +46,7 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
     private static final String SKEY_PARAM = "skey";
     private static final String AKEY_PARAM = "akey";
     private static final String HOST_PARAM = "host";
+    private static final String STORE_PARAM = "User Store";
     private static final String FAILMODE = "Fail mode";
 
     // number of tries to contact Duo
@@ -62,16 +63,15 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
     String host = null;
     String username = null;
     String failmode = null;
+    String userStore = null;
     String loginPageURL;
 
     @Override
-    public ExecutionStatus initialize(final PluginConfig config)
-            throws IllegalArgumentException {
+    public ExecutionStatus initialize(final PluginConfig config) throws IllegalArgumentException {
 
         super.initialize(config);
 
-        LOGGER.log(Level.INFO, this.getClass().getName()
-                   + " initializing Duo Plugin");
+        LOGGER.log(Level.INFO, this.getClass().getName() + " initializing Duo Plugin");
         try {
             this.ikey = (String) config.getParameter(IKEY_PARAM);
             this.skey = (String) config.getParameter(SKEY_PARAM);
@@ -79,6 +79,10 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
             this.failmode = config.getParameter(FAILMODE)
                                   .toString()
                                   .toLowerCase();
+            String configuredStore = (String) config.getParameter(STORE_PARAM);
+            if (configuredStore != null && !configuredStore.equals("")) {
+                this.userStore = configuredStore;
+            }
         } catch (Exception error) {
             LOGGER.log(Level.SEVERE,
                        "Null value not allowed for required parameter",
@@ -335,10 +339,8 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
 
         if (user.getGUID() != null) {
             subject.getPrincipals().add(new OAMGUIDPrincipal(user.getGUID()));
-
         } else {
             subject.getPrincipals().add(new OAMGUIDPrincipal(userIdentity));
-
         }
         context.setSubject(subject);
 
@@ -346,8 +348,7 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
         param.setName(PluginConstants.KEY_USERNAME_DN);
         param.setType("string");
         param.setValue(userDN);
-        context.getCredential().addCredentialParam(
-                PluginConstants.KEY_USERNAME_DN, param);
+        context.getCredential().addCredentialParam(PluginConstants.KEY_USERNAME_DN, param);
 
         PluginResponse rsp = new PluginResponse();
         rsp = new PluginResponse();
@@ -373,8 +374,7 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
     private String getUserName(final AuthenticationContext context) {
         String userName = null;
 
-        CredentialParam param = context.getCredential().getParam(
-                "KEY_USERNAME");
+        CredentialParam param = context.getCredential().getParam("KEY_USERNAME");
 
         if (param != null) {
             userName = (String) param.getValue();
@@ -387,15 +387,12 @@ public final class DuoPlugin extends AbstractAuthenticationPlugIn {
         return userName;
     }
 
-    private UserIdentityProvider getUserIdentityProvider()
-            throws IdentityProviderException {
-        UserIdentityProvider retVal = null;
-
-        if (retVal == null) {
-            retVal = UserIdentityProviderFactory.getProvider();
+    private UserIdentityProvider getUserIdentityProvider() throws IdentityProviderException {
+        if (this.userStore == null) {
+            return UserIdentityProviderFactory.getProvider();
+        } else {
+            return UserIdentityProviderFactory.getProvider(this.userStore);
         }
-
-        return retVal;
     }
 
     static String generateAkey() {
