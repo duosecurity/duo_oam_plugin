@@ -27,6 +27,7 @@
                 GenericConstants.PLUGIN_CLIENT_RESPONSE).split(",")[1];
         final String API_HOSTNAME = API_KEY_VALUE.split("=")[1];
         final String reqToken = request.getParameter(GenericConstants.AM_REQUEST_TOKEN_IDENTIFIER);
+        final String reqId = request.getParameter("request_id");
         %>
         <h1>Duo Authentication</h1>
         <script src="<%=request.getContextPath()%>/pages/js/Duo-Web-v2.min.js" type="text/javascript"></script>
@@ -35,6 +36,12 @@
           <%
           if(reqToken != null && reqToken.length() > 0) { %>
           <input type="hidden" name="<%=GenericConstants.AM_REQUEST_TOKEN_IDENTIFIER%>" value="<%=reqToken%>">
+          <%
+          }
+          %>
+          <%
+          if(reqId != null && reqId.length() > 0) { %>
+          <input type="hidden" name="request_id" value="<%=reqId%>">
           <%
           }
           %>
