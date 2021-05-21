@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/duosecurity/duo_oam_plugin.svg?branch=master)](https://github.com/duosecurity/duo_oam_plugin/actions)
+[![Build Status](https://github.com/duosecurity/duo_oam_plugin/workflows/Java%20CI/badge.svg)](https://github.com/duosecurity/duo_oam_plugin/actions)
 [![Issues](https://img.shields.io/github/issues/duosecurity/duo_oam_plugin)](https://github.com/duosecurity/duo_oam_plugin/issues)
 [![Forks](https://img.shields.io/github/forks/duosecurity/duo_oam_plugin)](https://github.com/duosecurity/duo_oam_plugin/network/members)
 [![Stars](https://img.shields.io/github/stars/duosecurity/duo_oam_plugin)](https://github.com/duosecurity/duo_oam_plugin/stargazers)
