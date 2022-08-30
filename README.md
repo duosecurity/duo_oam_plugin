@@ -4,7 +4,7 @@ This repository is deprecated by Duo Security.  The repository will remain publi
 
 However, Duo will not provide any further releases or enhancements.
 
-Duo recommends migrating your application to the Duo Universal Prompt. Refer to [our documentation](https://duo.com/docs/universal-prompt-update-guide) for more information on how to update.
+Duo recommends migrating your Duo OAM installation to the [Duo Universal Prompt OAM plugin](https://github.com/duosecurity/duo_universal_oam). Refer to [our OAM documentation](https://duo.com/docs/oam#update-the-duo-plugin) to learn how to update and the [Universal Prompt documentation](https://duo.com/docs/universal-prompt-update-guide) for more information.
 
 For frequently asked questions about the impact of this deprecation, please see the [Repository Deprecation FAQ](https://duosecurity.github.io/faq.html)
 
